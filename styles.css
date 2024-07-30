@@ -1,21 +1,22 @@
+/* Base Styles */
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #ffffff; /* Set background color to teal */
-    color: #008080; /* Set text color to white */
+    background-color: #ffffff; /* Background color to White */
+    color: #008080; /* Text color to Teal */
 }
 
 header {
-    background: #008080; 
-    color: #fff;
+    background: #008080; /* Header background to Teal */
+    color: #fff; /* Header text to White */
     padding: 1rem 0;
     text-align: center;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: #fff;
+    color: #fff; /* Navbar links to White */
 }
 
 .container {
@@ -23,9 +24,10 @@ header {
     margin: auto;
     overflow: hidden;
 }
+
 .about-container {
     max-width: 700px; /* Limit the width to prevent text clutter */
-    height: 6rem; /* Add padding to increase space around the text */
+    padding: 2rem 0; /* Add padding to increase space around the text */
 }
 
 .section-padding {
@@ -33,7 +35,7 @@ header {
 }
 
 h1, h2 {
-    color: #008080; 
+    color: #008080; /* Headings color to Teal */
 }
 
 .project-list {
@@ -47,9 +49,9 @@ h1, h2 {
 
 .project-item {
     width: calc(50% - 2rem);
-    background: #008080; /* Set project item background to teal */
+    background: #008080; /* Project item background to Teal */
     padding: 1rem;
-    border: 1px solid #006666;
+    border: 1px solid #006666; /* Slightly darker teal for border */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     animation: slideIn 1s ease-in-out;
 }
@@ -61,18 +63,30 @@ h1, h2 {
 
 .project-description {
     font-size: 0.9rem;
-    color: #fff; /* Set project description text color to white */
+    color: #fff; /* Project description text color to White */
 }
 
 footer {
-    background: #008080; 
-    color: #fff;
+    background: #008080; /* Footer background to Teal */
+    color: #fff; /* Footer text to White */
     text-align: center;
     padding: 1rem 0;
 }
 
 footer.bg-teal {
-    background-color: #008080;
+    background-color: #008080; /* Footer background to Teal */
+}
+
+.btn-primary {
+    background-color: #008080; /* Button background to Teal */
+    border-color: #008080; /* Button border to Teal */
+    color: #fff; /* Button text color to White */
+}
+
+.btn-primary:hover {
+    background-color: #006666; /* Darker Teal on hover */
+    border-color: #006666; /* Darker Teal border on hover */
+    color: #fff; /* Text color to White */
 }
 
 .sliding-text {
@@ -89,7 +103,7 @@ footer.bg-teal {
     transform: translateY(-100%);
     animation: slideUp 6s ease-in-out infinite;
     font-family: 'Arial', sans-serif;
-    color: #008080; /* Set sliding text color to white */
+    color: #008080; /* Sliding text color to Teal */
     text-align: center;
 }
 
