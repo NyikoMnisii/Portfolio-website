@@ -7,7 +7,7 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.disenadigitals.co.za/#about</loc>
+        <loc>http://www.disenadigitals.co.za/#web-development-Graphic-design-services</loc>
         <lastmod>2024-07-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -32,6 +32,12 @@
     </url>
      <url>
         <loc>http://www.disenadigitals.co.za/#Blog</loc>
+        <lastmod>2024-07-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://www.disenadigitals.co.za/#OurCompany</loc>
         <lastmod>2024-07-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
