@@ -127,19 +127,6 @@ section ul li {
     margin-bottom: 10px;
 }
 
-/* Footer */
-footer {
-    background-color: #008080; /* Teal color */
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-}
-
-footer p {
-    margin: 5px 0;
-    font-size: 0.9rem;
-}
-
 /* Form Styles */
 form .form-group {
     margin-bottom: 20px;
@@ -182,3 +169,38 @@ form .btn-primary:hover {
         font-size: 1.8rem;
     }
 }
+
+/* Footer Styles */
+footer.bg-teal {
+    background-color: #008080; /* Teal color */
+    color: #fff; /* White text color */
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.social-icons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between icons */
+}
+
+.social-icons a {
+    display: inline-block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icons img {
+    filter: brightness(0) invert(1); /* Makes the icon white */
+    width: 24px;
+    height: 24px;
+}
+
+.social-icons a:hover img {
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px #ffd700); /* Adds a gold-ish glow on hover */
+    transform: scale(1.1); /* Slightly enlarges the icon on hover */
+}
+
