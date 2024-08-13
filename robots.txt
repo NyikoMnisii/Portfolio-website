@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /Images/
+
+Sitemap: https://www.disenadigitals.co.za/sitemap.xml
