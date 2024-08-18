@@ -45,17 +45,6 @@ a:hover {
     background-color: #006666; /* Darker teal */
     border-radius: 5px;
 }
-.navbar .nav-link {
-    background-color: #006666; /* Teal color */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.navbar .nav-link:hover {
-    background-color: #006666; /* Darker teal */
-}
 
 /* Header Section */
 header {
@@ -155,7 +144,7 @@ form .form-control:focus {
 }
 
 form .btn-primary {
-    background-color: #006666; /* Teal color */
+    background-color: #008080; /* Teal color */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
