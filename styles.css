@@ -143,8 +143,8 @@ form .form-control:focus {
     box-shadow: 0 0 5px rgba(0, 128, 128, 0.5); /* Adjusted to teal */
 }
 
-form .btn-primary {
-    background-color: #008080; /* Teal color */
+form .btn-primary  {  
+    background-color: #008080 !important; /* Teal color */ 
     border: none;
     padding: 10px 20px;
     border-radius: 5px;

@@ -1,0 +1,176 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff;
+    color: #333333; /* Adjusted to Charcoal */
+    margin: 0;
+    padding: 0;
+}
+
+/* Primary and Secondary Colors */
+:root {
+    --primary-color: #008080; /* Teal */
+    --secondary-color: #333333; /* Charcoal */
+    --third-color: #ffffff; /* White */
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 10px 20px;
+}
+
+.navbar-brand img {
+    max-height: 100px;
+    border-radius: 50%;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: var(--third-color);
+    padding: 10px 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    background-color: var(--secondary-color);
+    color: var(--third-color);
+    border-radius: 4px;
+}
+
+/* Header Styles */
+header {
+    padding: 40px 0;
+    background-color: var(--primary-color);
+    color: var(--third-color);
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+/* Button Styles */
+.btn-teal {
+    background-color: var(--primary-color);
+    color: var(--third-color);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin: 10px 0;
+}
+
+.btn-teal:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.card-text {
+    color: var(--secondary-color);
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--primary-color);
+    color: var(--third-color);
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Sections */
+#AboutUs, #contact {
+    padding: 50px 0;
+}
+
+#AboutUs {
+    background-color: var(--third-color);
+}
+
+#CallToAction {
+    background-color: var(--primary-color);
+    padding: 50px 0;
+    text-align: center;
+}
+
+#CallToAction h2 {
+    font-size: 2rem;
+    color: var(--third-color);
+    margin-bottom: 20px;
+}
+
+#CallToAction p {
+    color: var(--third-color);
+}
+
+#CallToAction .btn-light {
+    background-color: var(--third-color);
+    color: var(--primary-color);
+    border-radius: 5px;
+    padding: 12px 25px;
+}
+
+#CallToAction .btn-light:hover {
+    background-color: var(--secondary-color);
+    color: var(--third-color);
+}
+
+/* Input and Form Styles */
+input[type="text"], input[type="email"], textarea {
+    border: 1px solid var(--secondary-color);
+    padding: 12px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0px 0px 5px rgba(0, 128, 128, 0.5);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .navbar-nav .nav-item .nav-link {
+        padding: 10px 0;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .btn-teal {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    #CallToAction h2 {
+        font-size: 1.75rem;
+    }
+}
