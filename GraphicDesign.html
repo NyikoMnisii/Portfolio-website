@@ -76,7 +76,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="Web_design_services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Services.html">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="GraphicDesign.html">Graphic Design</a></li>
                         <li class="nav-item"><a class="nav-link" href="WebDev.html">Web Development</a></li>
                         <li class="nav-item"><a class="nav-link" href="Blog.html">Blog</a></li>
@@ -118,5 +118,66 @@
                 </div>
             </div>
         </section>
+        <section id="contact" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Contact Me</h2>
+                <P>Ready to take your brand to the next level? Contact <strong>Disena Digitals (Pty) Ltd</strong> today to learn more about our comprehensive web design, graphic design, and digital marketing services. Whether you're searching for web designers near me or need expert advice on your next project, we're here to help.</P><br>
+                <form action="https://formspree.io/f/mnnanndq" method="POST" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                        <div class="invalid-feedback">Please enter your name.</div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" placeholder="Your Message" rows="5" required></textarea>
+                        <div class="invalid-feedback">Please enter your message.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
     </main>
+    <footer class="bg-teal py-2">
+        <div class="container text-center">
+            <p>&copy; 2024 Disena Digitals. All rights reserved</p>
+            <p>Company Registration No. K2023953631</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/disena_graphics/" target="_blank" aria-label="Instagram">
+                    <img src="Images/Instagram.png" alt="instagram icon" width="24" height="24">
+                </a>
+                <a href="https://x.com/nyikomnisii" target="_blank" aria-label="Facebook">
+                    <img src="Images/Twitter.png" alt="facebook icon" width="24" height="24">
+                </a>
+                <a href="https://www.facebook.com/1stEditionGraphics" target="_blank" aria-label="Twitter">
+                    <img src="Images/facebook.png" alt="twitter icon" width="24" height="24">
+                </a>
+                <a href="https://wa.me/0672800675" target="_blank" aria-label="WhatsApp">
+                    <img src="Images/Whatsapp.png" alt="Whatsapp icon" width="24" height="24">
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4327931294792470"
+    crossorigin="anonymous"></script> 
+    
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 </body>
