@@ -2,7 +2,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #ffffff;
-    color: #333333; /* Adjusted to Charcoal */
+    color: #333333; 
     margin: 0;
     padding: 0;
 }
@@ -17,25 +17,38 @@ body {
 /* Navbar Styles */
 .navbar {
     background-color: var(--primary-color);
-    padding: 10px 20px;
+    padding: 0px 20px;
 }
 
 .navbar-brand img {
-    max-height: 100px;
+    max-height: 150px;
     border-radius: 50%;
 }
 
 .navbar-nav .nav-item .nav-link {
+    text-decoration: none;
     color: var(--third-color);
     padding: 10px 15px;
-    font-weight: 500;
+    font-weight: 700;
     text-transform: uppercase;
+    border-bottom: none; 
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-    background-color: var(--secondary-color);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px; 
+    border-radius: 0; 
+    border-bottom: none; 
     color: var(--third-color);
-    border-radius: 4px;
+}
+.navbar-nav .nav-item .nav-link.active {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px; 
+    border-radius: 0; 
+    border-bottom: none; 
+    color: var(--third-color);
 }
 
 /* Header Styles */
@@ -65,7 +78,8 @@ header h1 {
 }
 
 .btn-teal:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--third-color);
+    color: var(--primary-color);
 }
 
 /* Card Styles */
@@ -106,6 +120,7 @@ footer p {
 /* Sections */
 #AboutUs, #contact {
     padding: 50px 0;
+    text-align: justify;
 }
 
 #AboutUs {
@@ -142,11 +157,12 @@ footer p {
 
 /* Input and Form Styles */
 input[type="text"], input[type="email"], textarea {
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--third-color);
     padding: 12px;
     border-radius: 5px;
     width: 100%;
     margin-bottom: 15px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
@@ -174,3 +190,28 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
         font-size: 1.75rem;
     }
 }
+
+
+.social-icons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between icons */
+}
+
+.social-icons a {
+    display: inline-block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icons img {
+    filter: brightness(0) invert(1); /* Makes the icon white */
+    width: 24px;
+    height: 24px;
+}
+
+.social-icons a:hover img {
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px #ffd700); /* Adds a gold-ish glow on hover */
+    transform: scale(1.1); /* Slightly enlarges the icon on hover */
+}
+
