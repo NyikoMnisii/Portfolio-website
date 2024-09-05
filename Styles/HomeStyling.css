@@ -9,7 +9,7 @@ body {
 
 /* Primary and Secondary Colors */
 :root {
-    --primary-color: #008080; /* Teal */
+    --primary-color: #008066; /* Teal */
     --secondary-color: #333333; /* Charcoal */
     --third-color: #ffffff; /* White */
 }
@@ -213,5 +213,61 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
 .social-icons a:hover img {
     filter: brightness(0) invert(1) drop-shadow(0 0 5px #ffd700); /* Adds a gold-ish glow on hover */
     transform: scale(1.1); /* Slightly enlarges the icon on hover */
+}
+/* Blog Card Styles */
+.blog-card {
+    border: none;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card img {
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+}
+
+.blog-card .card-body {
+    padding: 20px;
+}
+
+.blog-card .card-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.blog-card .card-text {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.blog-card .btn {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.blog-card .btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+@media (max-width: 767px) {
+    .blog-card {
+        margin-bottom: 30px;
+    }
 }
 
