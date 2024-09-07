@@ -118,6 +118,28 @@
                 <a href="#contact" class="btn btn-lg btn-light">Get Started</a>
             </div>
         </section>
+        <section id="counters" class="py-5 bg-light">
+            <div class="container text-center">
+                <h2 class="mb-4"></h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="counter-box">
+                            <h3>Graphic Design</h3>
+                            <p>Projects Received: <span id="graphic-design-received" class="counter">0</span></p>
+                            <p>Projects Completed: <span id="graphic-design-completed" class="counter">0</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="counter-box">
+                            <h3>Web Development</h3>
+                            <p>Projects Received: <span id="web-dev-received" class="counter">0</span></p>
+                            <p>Projects Completed: <span id="web-dev-completed" class="counter">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
 
         <!-- Services Section -->
         <section id="services" class="py-5">
@@ -232,5 +254,46 @@ crossorigin="anonymous"></script>
         }, false);
     })();
 </script>
+<script>
+    let graphicDesignData = {
+        received: 57,
+        completed: 49
+    };
+
+    let webDevData = {
+        received: 25,
+        completed: 21
+    };
+
+    // Function to animate the counters
+    function animateCounter(id, start, end, duration) {
+        let range = end - start;
+        let stepTime = Math.abs(Math.floor(duration / range));
+        let current = start;
+        let increment = end > start ? 1 : -1;
+        let obj = document.getElementById(id);
+        let timer = setInterval(function() {
+            current += increment;
+            obj.textContent = current;
+            if (current == end) {
+                clearInterval(timer);
+            }
+        }, stepTime);
+    }
+
+    // Function to update the counters dynamically with animation
+    function updateCounters() {
+        animateCounter('graphic-design-received', 0, graphicDesignData.received, 1500);
+        animateCounter('graphic-design-completed', 0, graphicDesignData.completed, 1500);
+
+        animateCounter('web-dev-received', 0, webDevData.received, 1500);
+        animateCounter('web-dev-completed', 0, webDevData.completed, 1500);
+    }
+
+    // Call the function when the page loads
+    document.addEventListener("DOMContentLoaded", updateCounters);
+</script>
+
+
 </body>
 </html>
