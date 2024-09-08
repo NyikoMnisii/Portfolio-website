@@ -363,7 +363,7 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     padding: 10px 20px;
     border: none;
     background-color: var(--third-color);
-    color: white;
+    color: rgb(29, 29, 29);
     cursor: pointer;
 }
 
