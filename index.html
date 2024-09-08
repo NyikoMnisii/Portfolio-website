@@ -139,7 +139,11 @@
                 </div>
             </div>
         </section>
-        
+        <div id="cookie-consent-banner">
+            <p>We use cookies to enhance your experience. By continuing to visit this site, you agree to our use of cookies.</p>
+            <button id="accept-cookies">Accept</button>
+            <button id="decline-cookies">Decline</button>
+        </div>
 
         <!-- Services Section -->
         <section id="services" class="py-5">
@@ -293,7 +297,56 @@ crossorigin="anonymous"></script>
     // Call the function when the page loads
     document.addEventListener("DOMContentLoaded", updateCounters);
 </script>
+<script>
+    // Function to set cookies
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
 
+    // Function to get a cookie
+    function getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // Function to check if the user has accepted cookies
+    function checkCookieConsent() {
+        return getCookie('cookieConsent') === 'accepted';
+    }
+
+    // Show the consent banner if no cookie consent has been given yet
+    function showCookieConsentBanner() {
+        if (!checkCookieConsent()) {
+            document.getElementById('cookie-consent-banner').style.display = 'block';
+        }
+    }
+
+    // Add event listeners to the buttons for accepting or declining cookies
+    document.getElementById('accept-cookies').addEventListener('click', function () {
+        setCookie('cookieConsent', 'accepted', 365); // Cookie valid for 1 year
+        document.getElementById('cookie-consent-banner').style.display = 'none';
+    });
+
+    document.getElementById('decline-cookies').addEventListener('click', function () {
+        setCookie('cookieConsent', 'declined', 365); // Cookie valid for 1 year
+        document.getElementById('cookie-consent-banner').style.display = 'none';
+    });
+
+    // Show the banner on page load
+    document.addEventListener('DOMContentLoaded', showCookieConsentBanner);
+</script>
 
 </body>
 </html>
