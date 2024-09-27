@@ -366,5 +366,74 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     color: rgb(29, 29, 29);
     cursor: pointer;
 }
+/* Intro Section Styling */
+.intro-section {
+    background-color: var(--primary-color); /* Using primary color for background */
+    padding: 40px 0; /* Padding similar to CallToAction */
+    text-align: center;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-radius: 8px; /* Smooth corners */
+}
+
+.intro-section h2 {
+    font-size: 1.8rem; /* Demure but prominent heading */
+    color: var(--third-color); /* Third color for the text */
+    margin-bottom: 15px;
+}
+
+.intro-section p {
+    color: var(--third-color); /* Consistent color for paragraph text */
+    font-size: 1.1rem;
+    line-height: 1.7; /* Slightly increased line-height for readability */
+    margin-bottom: 20px;
+}
+
+.intro-section .btn-light {
+    background-color: var(--third-color); /* Button matches the third color */
+    color: var(--primary-color); /* Text matches the primary color */
+    border-radius: 5px;
+    padding: 12px 30px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.intro-section .btn-light:hover {
+    background-color: var(--secondary-color); /* Hover effect with secondary color */
+    color: var(--third-color); /* Inverted colors on hover */
+}
+
+/* Input and Form Styles (If included) */
+input[type="text"], input[type="email"], textarea {
+    border: 1px solid var(--third-color);
+    padding: 12px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 15px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0px 0px 5px rgba(0, 128, 128, 0.5);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .intro-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .intro-section p {
+        font-size: 1rem;
+        text-align: left; /* Left-align text for readability on smaller screens */
+    }
+
+    .intro-section .btn-light {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+
 
 
