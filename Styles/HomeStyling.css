@@ -7,6 +7,20 @@ body {
     padding: 0;
 }
 
+#Vs {
+    padding: 70px 0;
+    background-color: #f7f9fa;
+    font-family: 'Roboto', sans-serif;
+ }
+  
+  /* Title Styling */
+#Vs h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 50px;
+}
+
 /* Primary and Secondary Colors */
 :root {
     --primary-color: #008066; /* Teal */
@@ -90,6 +104,9 @@ header h1 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 20px;
 }
+.card-hover:hover i {
+    color: #00a887;
+  }
 
 .card:hover {
     transform: translateY(-5px);
