@@ -24,6 +24,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" defer></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -63,6 +64,7 @@
     <!-- For multiple resolutions and browsers -->
     <link rel="manifest" href="Images/site.webmanifest">
     <link rel="canonical" href="https://www.disenadigitals.co.za/">
+    <link rel="canonical" href="https://www.disenadigitals.co.za/Contact">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
@@ -184,7 +186,18 @@
             <button id="accept-cookies">Accept</button>
             <button id="decline-cookies">Decline</button>
         </div>
-
+        <div id="popupContainer" class="popup-container">
+            <div class="popup-form">
+                <span class="close-btn" onclick="closePopup()">&#10006;</span> <!-- Close icon (X) -->
+                <h2>Get Your Free Design Guide!</h2>
+                <p>Sign up to receive our exclusive web design guide.</p>
+                <form>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
           <!-- Services Section -->
       <section id="services" class="py-5">
         <div class="container">
@@ -362,6 +375,19 @@ crossorigin="anonymous"></script>
 
     // Call the function when the page loads
     document.addEventListener("DOMContentLoaded", updateCounters);
+</script>
+<script>
+    // Show the pop-up after 5 seconds
+    window.onload = function() {
+        setTimeout(function() {
+            document.getElementById('popupContainer').style.display = 'flex';
+        }, 8000); 
+    };
+
+    // Close the pop-up
+    function closePopup() {
+        document.getElementById('popupContainer').style.display = 'none';
+    }
 </script>
 <script>
     // Function to set cookies
