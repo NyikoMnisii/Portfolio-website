@@ -24,7 +24,7 @@
 }
 
 .navbar-brand img {
-    max-height: 150px;
+    max-height: 100px;
     border-radius: 50%;
 }
 
@@ -53,7 +53,25 @@
     border-bottom: none; 
     color: var(--third-color);
 }
+/* Responsiveness */
+@media (max-width: 768px) {
+    .navbar-nav .nav-item .nav-link {
+        padding: 10px 0;
+    }
 
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .btn-teal {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    #CallToAction h2 {
+        font-size: 1.75rem;
+    }
+}
         h2,
         h3 {
             color: #008066;
