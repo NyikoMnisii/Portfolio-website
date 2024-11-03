@@ -512,6 +512,18 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
 .close-btn:hover {
     color: #c34e4e;
 }
-
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #008080;
+  }
+  
+  h3 {
+    font-size: 1.4em;
+    margin-top: 15px;
+  }
+  p{
+    color: #005a47;
+  }
 
 
