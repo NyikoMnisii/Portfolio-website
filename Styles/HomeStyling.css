@@ -289,80 +289,50 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
 }
 
 
+/* Counters Section Styles */
 #counters {
-    padding: 80px 0;
-    background: linear-gradient(135deg, var(--third-color), var(--third-color));
-    color: var(--primary-color);
-    text-align: center;
+    padding: 50px 0; /* Adjusted padding for a clean look */
+    background-color: #f8f9fa; /* Light background for contrast */
 }
-
 
 #counters h2 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 50px;
-    color: var(--primary-colorr);
+    font-size: 2rem; /* Size of the section title */
+    margin-bottom: 30px; /* Space below the title */
+    color: var(--primary-color); /* Teal color for the title */
 }
 
-.counter-box {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    backdrop-filter: blur(10px);
-    color: var(--primary-color);
+#counters h1 {
+    font-size: 1.5rem; /* Size of the headings for each counter */
+    margin-bottom: 15px; /* Space below each heading */
+    color: var(--primary-color); /* Darker color for contrast */
 }
 
-/* Counter Box Hover Effect */
-.counter-box:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+#counters p {
+    font-size: 1.2rem; /* Size of the paragraph text */
+    margin: 5px 0; /* Space between paragraphs */
+    color: #555; /* Medium gray for paragraph text */
 }
-
-/* Heading for Each Category */
-.counter-box h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
 
 .counter {
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--primary-color); 
+    font-weight: bold; /* Make the counter numbers bold */
+    color: var(--primary-color); /* Teal color for the counter numbers */
 }
 
-.counter-box p {
-    font-size: 1.2rem;
-    color: var(--primary-colorr);
-    margin: 10px 0;
-}
-
-/* Responsive Styles */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .counter-box {
-        margin-bottom: 30px;
-    }
-
     #counters h2 {
-        font-size: 2rem;
+        font-size: 1.5rem; /* Adjust title size for smaller screens */
+    }
+    
+    #counters h1 {
+        font-size: 1.25rem; /* Adjust heading size for smaller screens */
     }
 
-    .counter-box h3 {
-        font-size: 1.5rem;
-    }
-
-    .counter {
-        font-size: 2.5rem;
-    }
-
-    .counter-box p {
-        font-size: 1.1rem;
+    #counters p {
+        font-size: 1rem; /* Adjust paragraph size for smaller screens */
     }
 }
+
 #cookie-consent-banner {
     position: fixed;
     bottom: 0;
