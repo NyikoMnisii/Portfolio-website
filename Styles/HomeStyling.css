@@ -512,18 +512,248 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
 .close-btn:hover {
     color: #c34e4e;
 }
-h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #008080;
+/* Base Section Styling */
+#commitment {
+    background-color: #ffffff;
+    padding: 60px 20px;
+    color: #333;
   }
   
-  h3 {
-    font-size: 1.4em;
+  #commitment h2 {
+    font-size: 2.2em;
+    color: #008080;
+    margin-bottom: 20px;
+  }
+  
+  #commitment .lead {
+    font-size: 1.2em;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  
+  /* Text Centering and Color */
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Column and Image Styling */
+  #commitment .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  #commitment .col-md-4 {
+    max-width: 300px;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  #commitment img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  /* Heading and Paragraph Styles */
+  #commitment h3 {
+    font-size: 1.5em;
+    color: #008080;
     margin-top: 15px;
   }
-  p{
-    color: #005a47;
+  
+  #commitment p {
+    font-size: 1em;
+    color: #666;
+    margin: 10px 0 20px;
+    line-height: 1.5;
   }
+  
+  /* CTA Button Styling */
+  .btn-teal {
+    background-color: #008080;
+    color: #fff;
+    padding: 10px 25px;
+    font-size: 1em;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-teal:hover {
+    background-color: #006666;
+    color: #f7f9fa;
+  }
+  
+  /* Additional Spacing for CTA */
+  #commitment .text-center.mt-5 {
+    margin-top: 60px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    #commitment h2 {
+      font-size: 1.8em;
+    }
+    #commitment h3 {
+      font-size: 1.3em;
+    }
+    #commitment .row {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+
+/* Services Section Styling */
+#services {
+    background-color: #f8f9fa; /* Light background for contrast */
+    padding: 5rem 0;
+}
+
+#services h2 {
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+#services .mb-4 {
+    color: #008066;
+}
+
+#services .col-md-3 {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1rem 0;
+}
+
+#services .col-md-3:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+#services img {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(100%) saturate(500%) hue-rotate(135deg) brightness(95%) contrast(100%);
+    transition: filter 0.3s ease;
+}
+
+#services img:hover {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(100%) saturate(500%) hue-rotate(135deg) brightness(110%) contrast(100%);
+}
 
 
+#services h3 {
+    color: #008080; /* Teal color for headings */
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#services p {
+    color: #666;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #services h2 {
+        font-size: 2rem;
+    }
+    #services h3 {
+        font-size: 1.3rem;
+    }
+    #services p {
+        font-size: 0.95rem;
+    }
+}
+/* Container Styling */
+#contact {
+    font-family: Arial, sans-serif;
+}
+
+#contact h2 {
+    font-weight: 600;
+    color: #008066;
+}
+
+#contact p {
+    font-size: 1rem;
+    color: #333;
+}
+
+#contact i {
+    font-size: 1.2rem;
+}
+
+/* Form Styling */
+#contact .form-group label {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+#contact .form-control {
+    border: 1px solid #008066;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+#contact .form-control:focus {
+    outline: none;
+    border-color: #00574b;
+}
+
+/* Button Styling */
+#contact .btn-teal {
+    background-color: #008066;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#contact .btn-teal:hover {
+    background-color: #00654d;
+}
+
+/* Contact Details Styling */
+#contact .col-md-6 p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+#contact .col-md-6 p strong {
+    color: #333;
+}
+
+#contact .col-md-6 i {
+    margin-right: 8px;
+    color: #008066;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    #contact h2 {
+        font-size: 1.8rem;
+    }
+
+    #contact p {
+        font-size: 0.95rem;
+    }
+
+    #contact .btn-teal {
+        font-size: 0.95rem;
+    }
+}
