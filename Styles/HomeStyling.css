@@ -850,3 +850,136 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
         font-size: 0.95rem;
     }
 }
+.social-sharing {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.social-sharing a img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.social-sharing a:hover img {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+
+#service-process {
+    background-color: var(--third-color); /* Light background for contrast */
+    padding: 50px 0; /* Adequate padding around the section */
+}
+
+#service-process h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color); /* Teal color for the main heading */
+    margin-bottom: 30px;
+}
+
+#service-process p {
+    font-size: 1.1rem;
+    color: var(--secondary-color); /* Dark gray text for readability */
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+#service-process .row {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#service-process .col-md-3 {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--third-color); /* White background for each card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect for the cards */
+    margin: 0 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#service-process .col-md-3:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
+    transform: translateY(-5px); /* Lift the card slightly on hover */
+}
+
+#service-process .col-md-3 h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color); /* Teal color for the heading inside each card */
+    margin-bottom: 10px;
+}
+
+#service-process .col-md-3 p {
+    font-size: 1rem;
+    color: var(--secondary-color); /* Lighter gray text for description */
+    line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+    #service-process .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #service-process .col-md-3 {
+        margin-bottom: 20px; /* Add margin between cards on smaller screens */
+    }
+}
+
+.faq-section {
+    background-color: var(--third-color); /* Light background color */
+    padding: 60px 0; /* Vertical padding */
+    font-family: 'Arial', sans-serif; /* Use a clean sans-serif font */
+}
+
+.faq-section h2 {
+    color: var(--primary-color); /* Teal color */
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px; /* Space below the title */
+}
+
+.faq-item {
+    background-color: var(--third-color); /* White background for each FAQ item */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+    margin-bottom: 20px; /* Space between FAQ items */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.faq-item h3 {
+    color: var(--secondary-color); /* Dark grey color for question */
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Space below the question */
+}
+
+.faq-item p {
+    color: var(--secondary-color); /* Light grey text for answers */
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Hover Effect on FAQ items */
+.faq-item:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .faq-item {
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+
+    .faq-section h2 {
+        font-size: 28px; /* Smaller title size for mobile */
+    }
+}
