@@ -704,11 +704,23 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     font-weight: bold;
 }
 
+
+#services .services-intro {
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--secondary-color);
+}
+
 #services .row {
     display: flex;
     justify-content: center;
     gap: 15px;
 }
+
+
 
 #services .col-md-3 {
     flex: 1 1 200px;
