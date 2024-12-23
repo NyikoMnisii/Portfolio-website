@@ -115,9 +115,10 @@
     </header>
     <section id="blog-details" class="py-5">
         <div class="container">
-            <h2 id="blog-title" class="text-center mb-4"></h2>
-            <img id="blog-image" src="" alt="Blog Image" class="img-fluid mb-4">
-            <p id="blog-content"></p>
+            <div id="blog-post-display">
+                <h2></h2>
+                <div id="blog-content"></div>
+            </div>
             <p class="author-info"><strong>Author:</strong> <span id="blog-author"></span></p>
             <a href="index.html" class="back-btn">Back to Blogs</a>
         </div>
@@ -177,11 +178,11 @@
         </div>
     </footer>
 
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
-
+    
+        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAQXWhEuSn6pXb9dNo72D8_if8ggdX7XL8",
             authDomain: "disenadigitals.firebaseapp.com",
@@ -191,29 +192,46 @@
             appId: "1:446106948060:web:94afd8f98bfc40ded8ff19",
             measurementId: "G-3H06QS4RPG"
         };
-
+    
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-
+    
         // Get Blog ID from URL
         const urlParams = new URLSearchParams(window.location.search);
         const blogId = urlParams.get('id');
-
-        // Fetch and Display Blog Details
-        async function fetchBlogDetails() {
-            const blogDoc = await getDoc(doc(db, "blogs", blogId));
-            if (blogDoc.exists()) {
-                const blog = blogDoc.data();
-                document.getElementById('blog-title').textContent = blog.title;
-                document.getElementById('blog-image').src = blog.imageUrl;
-                document.getElementById('blog-content').textContent = blog.content;
-                document.getElementById('blog-author').textContent = blog.author;
-            } else {
-                document.getElementById('blog-details').innerHTML = '<p class="text-center text-danger">Blog not found.</p>';
+    
+        // Function to display a single blog post
+        async function displayBlogPost() {
+            if (!blogId) {
+                console.error("Blog ID not found in the URL.");
+                return;
+            }
+    
+            try {
+                const docRef = doc(db, "blogs", blogId);
+                const docSnap = await getDoc(docRef);
+    
+                if (docSnap.exists()) {
+                    const blog = docSnap.data();
+    
+                    // Set the blog title and content in the HTML elements
+                    document.getElementById("blog-post-display").querySelector("h2").textContent = blog.title;
+                    document.getElementById("blog-content").innerHTML = blog.content;  // Display the content with <br/> tags
+                    document.getElementById("blog-author").innerHTML = blog.author;
+                } else {
+                    console.log("No such blog found!");
+                    document.getElementById("blog-post-display").innerHTML = "<p>Blog not found.</p>";
+                }
+            } catch (error) {
+                console.error("Error fetching blog post: ", error);
             }
         }
-
-        fetchBlogDetails();
+    
+        // Display the blog when the page loads
+        displayBlogPost();
     </script>
+    
+
 </body>
 </html>

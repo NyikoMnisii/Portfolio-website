@@ -56,6 +56,12 @@
         .btn:hover {
             background-color: #004d40;
         }
+        .blog-post {
+            margin-top: 30px;
+        }
+        .blog-post h2 {
+            color: #00796b;
+        }
     </style>
 </head>
 <body>
@@ -88,12 +94,18 @@
 
             <button type="submit" class="btn">Publish Blog</button>
         </form>
+        
+        <!-- Displaying a blog post -->
+        <div class="blog-post" id="blog-post-display">
+            <h2>Blog Title Here</h2>
+            <div id="blog-content"></div>
+        </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
-        
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
         document.addEventListener("DOMContentLoaded", () => {
             // Firebase configuration
             const firebaseConfig = {
@@ -149,6 +161,21 @@
                 // Reset the form
                 blogForm.reset();
             });
+
+            // Function to display a blog post
+            async function displayBlogPost() {
+                const querySnapshot = await getDocs(collection(db, "blogs"));
+                querySnapshot.forEach((doc) => {
+                    const blog = doc.data();
+                    const blogContent = blog.content;
+
+                    document.getElementById("blog-post-display").querySelector("h2").textContent = blog.title;
+                    document.getElementById("blog-content").innerHTML = blogContent;  // Display the content with <br/> tags
+                });
+            }
+
+            // Display the blog when the page loads
+            displayBlogPost();
         });
     </script>
 </body>
