@@ -407,7 +407,7 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
 }
 
 .blog-card .btn {
-    color: var(--primary-color);
+    color: var(--third-color);
     border-color: var(--primary-color);
     font-weight: 500;
     text-transform: uppercase;

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS Blog Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #00796b;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .btn {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            align-self: flex-end;
+        }
+        .btn:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create a New Blog</h1>
+        <form id="blog-form">
+            <label for="title">Blog Title</label>
+            <input type="text" id="title" name="title" placeholder="Enter blog title" required>
+
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" placeholder="Author name" required>
+
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option value="" disabled selected>Select a category</option>
+                <option value="Technology">Technology</option>
+                <option value="Design">Design</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="Education">Education</option>
+            </select>
+
+            <label for="content">Content</label>
+            <textarea id="content" name="content" rows="10" placeholder="Write your blog content here" required></textarea>
+
+            <label for="tags">Tags (comma-separated)</label>
+            <input type="text" id="tags" name="tags" placeholder="e.g., technology, design">
+
+            <label for="featured-image">Featured Image</label>
+            <input type="file" id="featured-image" name="featured_image" accept="image/*">
+
+            <button type="submit" class="btn">Publish Blog</button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            // Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyAQXWhEuSn6pXb9dNo72D8_if8ggdX7XL8",
+                authDomain: "disenadigitals.firebaseapp.com",
+                projectId: "disenadigitals",
+                storageBucket: "disenadigitals.firebasestorage.app",
+                messagingSenderId: "446106948060",
+                appId: "1:446106948060:web:94afd8f98bfc40ded8ff19",
+                measurementId: "G-3H06QS4RPG"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+
+            // Function to save the blog
+            async function saveBlog(title, author, content, imageUrl, category) {
+                try {
+                    const docRef = await addDoc(collection(db, "blogs"), {
+                        title,
+                        author,
+                        content: content.replace(/\n/g, '<br/>'),
+                        imageUrl,
+                        category,
+                        createdAt: new Date().toISOString()
+                    });
+                    alert("Blog saved successfully with ID: " + docRef.id);
+                } catch (error) {
+                    alert("Error saving blog: " + error.message);
+                }
+            }
+
+            // Handle form submission
+            const blogForm = document.getElementById("blog-form");
+            blogForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                // Getting form data
+                const title = document.getElementById("title").value;
+                const author = document.getElementById("author").value;
+                const content = document.getElementById("content").value;
+                const category = document.getElementById("category").value;
+
+                // Assuming the imageUrl is either a URL string or a file that needs to be uploaded (handle accordingly)
+                const imageUrl = document.getElementById("featured-image").files.length > 0
+                    ? URL.createObjectURL(document.getElementById("featured-image").files[0])
+                    : ""; // You can replace this with actual image upload logic.
+
+                // Save the blog
+                await saveBlog(title, author, content, imageUrl, category);
+                
+                // Reset the form
+                blogForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>

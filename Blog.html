@@ -99,43 +99,21 @@
         </nav>
     </header>
     <main>
-        <section id="Blog" class="py-5">
-            <div class="container">
-                <h2 class="text-center mb-4">Latest Blog Posts</h2>
-                <div class="row">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="blog-card mb-4 shadow-sm">
-                            <img src="Images/WebsitePro.jpg" class="card-img-top" alt="Blog Image 1">
-                            <div class="card-body">
-                                <h4 class="card-title">The Importance of Professional Web Design</h4>
-                                <p class="card-text">In today's digital landscape, having a strong online presence is essential for businesses of all sizes. A well-designed website not....</p>
-                                <a href="WebdesignBlog.html" class="btn btn-outline-primary">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="blog-card mb-4 shadow-sm">
-                            <img src="Images/SEO.jpg" class="card-img-top" alt="Blog Image 2">
-                            <div class="card-body">
-                                <h4 class="card-title">SEO Benefits for Your Website</h4>
-                                <p class="card-text">Learn how a good design can improve your website's SEO and help you reach a broader audience...</p>
-                                <a href="" class="btn btn-outline-primary">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="blog-card mb-4 shadow-sm">
-                            <img src="Images/BrandID.jpg" class="card-img-top" alt="Blog Image 3">
-                            <div class="card-body">
-                                <h4 class="card-title">Brand Identity and Graphic Design</h4>
-                                <p class="card-text">Discover how consistent branding across platforms can build recognition and trust for your business...</p>
-                                <a href="l" class="btn btn-outline-primary">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div id="loading-spinner" style="display: none; text-align: center; margin-top: 50px;">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden"></span>
             </div>
-        </section>
+        </div>
+        
+        <section id="Blog" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Latest Blog Posts</h2>
+            <div id="blog-container" class="row">
+                <!-- Blog posts will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+    
         <!--call to action-->
       <section id="CallToAction" class="py-5 text-center text-white bg-teal">
         <div class="container">
@@ -144,69 +122,49 @@
             <a href="#contact" class="btn btn-lg btn-light">Get Started</a>
         </div>
     </section>
-
-     <!-- Services Section -->
-      <section id="services" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Our Services</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <img src="Images/graphic.jpg" height="250" width="250" class="card-img-top" alt="Graphic Design">
-                        <div class="card-body">
-                            <!-- SEO-Optimized H2 Tag -->
-                            <h2 class="card-title">Looking for Freelance Graphic Designers near You?</h2>
-                            
-                            <!-- SEO-Optimized Text with Long-Tail Keywords -->
-                            <p class="card-text">Our team of <strong>freelance graphic designers in Johannesburg</strong> provides top-quality <strong>branding</strong> and <strong>creative design services</strong> tailored for businesses of all sizes. Whether you need a new logo, marketing materials, or a full brand refresh, we've got you covered.</p>
-                            
-                            <!-- Additional SEO and Keywords -->
-                            <p class="card-text">We also offer <strong>online graphic design services</strong> across South Africa, allowing us to assist businesses nationwide with affordable and professional design solutions.</p>
-                        
-                            <!-- Internal Linking with Optimized Anchor Text -->
-                            <a href="GraphicDesign.html" class="btn btn-teal" title="Explore our freelance and online graphic design services in South Africa">Learn More</a>
-                        </div>                        
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <img src="Images/web.jpg" height="250" width="250" class="card-img-top" alt="Web Development">
-                        <div class="card-body">
-                            <!-- SEO-Optimized H2 Tag -->
-                            <h2 class="card-title">Professional Graphic Design Services in Johannesburg</h2>
-                            
-                            <!-- SEO-Optimized Text with Long-Tail Keywords -->
-                            <p class="card-text">Our team specializes in <strong>affordable website development packages</strong> tailored for small businesses and startups. Whether you need a simple business website or a full-featured <strong>ecommerce website design in Johannesburg</strong>, we have the perfect solution for you.</p>
-                            
-                            <!-- Add a benefit-focused line with another keyword -->
-                            <p class="card-text">We build <strong>responsive</strong> and <strong>user-friendly websites</strong> that effectively communicate your brand's message and help drive growth for your business.</p>
-                        
-                            <!-- Internal Linking with Optimized Anchor Text -->
-                            <a href="WebDev.html" class="btn btn-teal" title="Learn more about our affordable website development services">Learn More</a>
-                        </div>                        
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <img src="Images/marketing.jpg" height="250" width="250" class="card-img-top" alt="Digital Marketing">
-                        <div class="card-body">
-                            <!-- SEO-Optimized H2 Tag -->
-                            <h2 class="card-title">Affordable Digital Marketing Services in South Africa</h2>
-                            
-                            <!-- SEO-Optimized Text with Long-Tail Keywords -->
-                            <p class="card-text">We offer <strong>comprehensive digital marketing solutions</strong> tailored to small businesses and startups. Whether you're looking to improve your online presence, enhance your brand visibility, or run effective <strong>social media marketing campaigns</strong>, our expert team has you covered.</p>
-                            
-                            <!-- Add a benefit-focused line with another keyword -->
-                            <p class="card-text">Our services include <strong>search engine optimization (SEO)</strong>, <strong>content marketing</strong>, and <strong>paid advertising</strong> strategies designed to help your business grow and succeed in a competitive market.</p>
-                        
-                            <!-- Internal Linking with Optimized Anchor Text -->
-                            <a href="Marketing.html" class="btn btn-teal" title="Learn more about our affordable digital marketing services">Learn More</a>
-                        </div>                        
-                    </div>
-                </div>
+<!-- Services Section -->
+<section id="services" class="py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Our Services</h2>
+        <p class="services-intro">At Disena Digitals, we specialize in professional website design across South Africa. Our team proudly serves clients from Johannesburg and nationwide, creating custom, high-quality websites for businesses looking to elevate their online presence. Whether you need a web developer near you or a complete website design solution, we’re here to help.</p>
+        <div class="row">
+            
+            <!-- Graphic Design Service -->
+            <div class="col-md-3">
+                <img src="Images/graphicserv.png" class="teal-overlay" height="55" width="55" alt="Graphic Design Icon">
+                <h3 class="text-teal mt-2">Graphic Design</h3>
+                <p>Creative designs tailored for your brand.</p>
+                <p class="text-muted">Starting from R350</p>
             </div>
+            
+            <!-- App Development Service -->
+            <div class="col-md-3">
+                <img src="Images/Appdev.png" class="teal-overlay" height="55" width="55" alt="App Development Icon">
+                <h3 class="text-teal mt-2">App Development</h3>
+                <p>Custom apps that elevate your business.</p>
+                <p class="text-muted">Starting from R5,000</p>
+            </div>
+            
+            <!-- Web Development Service -->
+            <div class="col-md-3">
+                <img src="Images/webdev.png" class="teal-overlay" height="55" width="55" alt="Web Development Icon">
+                <h3 class="text-teal mt-2">Web Development</h3>
+                <p>Responsive websites that stand out.</p>
+                <p class="text-muted">Starting from R1,500</p>
+            </div>
+            
+            <!-- SEO Service -->
+            <div class="col-md-3">
+                <img src="Images/seoserv.png" class="teal-overlay" height="55" width="55" alt="SEO Icon">
+                <h3 class="text-teal mt-2">SEO</h3>
+                <p>Boost your online visibility and reach.</p>
+                <p class="text-muted">Starting from R3,000</p>
+            </div>
+            
         </div>
-    </section>
+    </div>
+  </section>
+    
         <!-- Contact Section -->
         <section id="contact" class="py-5 bg-light">
             <div class="container">
@@ -263,7 +221,9 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4327931294792470"
     crossorigin="anonymous"></script> 
-    
+
+    <script type="module" src="fetchBlogs.js"></script>
+
     <script>
         (function() {
             'use strict';
