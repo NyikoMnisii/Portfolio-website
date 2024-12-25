@@ -998,3 +998,113 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
         font-size: 28px; /* Smaller title size for mobile */
     }
 }
+ul {
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+}
+
+li {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+/* Blockquotes */
+blockquote {
+    background-color: #f1f1f1;
+    border-left: 5px solid #008066;
+    padding: 15px;
+    margin: 20px 0;
+    font-style: italic;
+}
+/* Case Studies & Insights */
+article {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+article p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+/* Sections */
+section {
+    margin-bottom: 40px;
+    padding-top: 20px;
+}
+
+/* FAQ Section */
+dl {
+    margin: 20px 0;
+    font-size: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+dd {
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p, li {
+        font-size: 1rem;
+    }
+
+    #cta .btn {
+        padding: 10px 20px;
+    }
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #008066; /* Teal */
+}
+
+/* Section Titles */
+h2 {
+    font-size: 2rem;
+    color: #008066; /* Teal */
+    margin-bottom: 10px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    color: #008066;
+    text-align: center ;
+}
+
+/* Paragraphs and Lists */
+p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+footer {
+    text-align: left;
+    padding: 10px;
+    background-color: var(--primary-color); /* Charcoal */
+    color: #ffffff;
+    margin-top: 30px;
+    border-radius: 5px;
+}
