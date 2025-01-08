@@ -114,14 +114,16 @@
             </div>
         </nav>
     </header>
+
     <section id="blog-details" class="py-5">
         <div class="container">
             <div id="blog-post-display">
                 <h2></h2>
+                <img id="blog-image" src="" alt="Blog Image" class="img-fluid mb-4" />
                 <div id="blog-content"></div>
             </div>
             <p class="author-info"><strong>Author:</strong> <span id="blog-author"></span></p>
-            <a href="index.html" class="back-btn">Back to Blogs</a>
+            <a href="Blog.html" class="back-btn">Back to Blogs</a>
         </div>
     </section>
     
@@ -180,57 +182,70 @@
     </footer>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+     import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+     
+     const firebaseConfig = {
+                apiKey: "AIzaSyAQXWhEuSn6pXb9dNo72D8_if8ggdX7XL8",
+                authDomain: "disenadigitals.firebaseapp.com",
+                projectId: "disenadigitals",
+                storageBucket: "disenadigitals.firebasestorage.app",
+                messagingSenderId: "446106948060",
+                appId: "1:446106948060:web:94afd8f98bfc40ded8ff19",
+                measurementId: "G-3H06QS4RPG"
+            };
     
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAQXWhEuSn6pXb9dNo72D8_if8ggdX7XL8",
-            authDomain: "disenadigitals.firebaseapp.com",
-            projectId: "disenadigitals",
-            storageBucket: "disenadigitals.firebasestorage.app",
-            messagingSenderId: "446106948060",
-            appId: "1:446106948060:web:94afd8f98bfc40ded8ff19",
-            measurementId: "G-3H06QS4RPG"
-        };
-    
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-    
-        // Get Blog ID from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const blogId = urlParams.get('id');
-    
-        // Function to display a single blog post
-        async function displayBlogPost() {
-            if (!blogId) {
-                console.error("Blog ID not found in the URL.");
-                return;
+        
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+// Get Blog ID from URL
+const urlParams = new URLSearchParams(window.location.search);
+const blogId = urlParams.get('id');
+
+// Function to display a single blog post
+async function displayBlogPost() {
+    if (!blogId) {
+        console.error("Blog ID not found in the URL.");
+        return;
+    }
+
+    try {
+        const docRef = doc(db, "blogs", blogId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            const blog = docSnap.data();
+
+            // Fetch the image from Firebase Storage
+            if (blog.imagePath) { // Ensure the imagePath exists in the blog data
+                const imageRef = ref(storage, blog.imagePath); // Image path stored in Firestore
+                const imageUrl = await getDownloadURL(imageRef);
+                document.getElementById('blog-image').src = imageUrl;
+            } else {
+                console.warn("Image path not found in the blog data.");
             }
-    
-            try {
-                const docRef = doc(db, "blogs", blogId);
-                const docSnap = await getDoc(docRef);
-    
-                if (docSnap.exists()) {
-                    const blog = docSnap.data();
-    
-                    // Set the blog title and content in the HTML elements
-                    document.getElementById("blog-post-display").querySelector("h2").textContent = blog.title;
-                    document.getElementById("blog-content").innerHTML = blog.content;  // Display the content with <br/> tags
-                    document.getElementById("blog-author").innerHTML = blog.author;
-                } else {
-                    console.log("No such blog found!");
-                    document.getElementById("blog-post-display").innerHTML = "<p>Blog not found.</p>";
-                }
-            } catch (error) {
-                console.error("Error fetching blog post: ", error);
-            }
+
+            // Set the blog title and content in the HTML elements
+            document.getElementById("blog-post-display").querySelector("h2").textContent = blog.title;
+            document.getElementById("blog-content").innerHTML = blog.content; // Display the content with <br/> tags
+            document.getElementById("blog-author").innerHTML = blog.author;
+
+        } else {
+            console.log("No such blog found!");
+            document.getElementById("blog-post-display").innerHTML = "<p>Blog not found.</p>";
         }
-    
-        // Display the blog when the page loads
-        displayBlogPost();
+    } catch (error) {
+        console.error("Error fetching blog post: ", error);
+    }
+}
+
+// Call the function to display the blog post
+displayBlogPost();
+
     </script>
     
 

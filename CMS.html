@@ -58,6 +58,8 @@
         }
         .blog-post {
             margin-top: 30px;
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
         }
         .blog-post h2 {
             color: #00796b;
@@ -95,88 +97,123 @@
             <button type="submit" class="btn">Publish Blog</button>
         </form>
         
-        <!-- Displaying a blog post -->
-        <div class="blog-post" id="blog-post-display">
-            <h2>Blog Title Here</h2>
-            <div id="blog-content"></div>
-        </div>
+        <h1>Published Blogs</h1>
+        <div id="blog-posts-container"></div>
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js';
+        import { getFirestore, collection, addDoc, getDocs } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js';
+        import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js';
 
-        document.addEventListener("DOMContentLoaded", () => {
-            // Firebase configuration
-            const firebaseConfig = {
-                apiKey: "AIzaSyAQXWhEuSn6pXb9dNo72D8_if8ggdX7XL8",
-                authDomain: "disenadigitals.firebaseapp.com",
-                projectId: "disenadigitals",
-                storageBucket: "disenadigitals.firebasestorage.app",
-                messagingSenderId: "446106948060",
-                appId: "1:446106948060:web:94afd8f98bfc40ded8ff19",
-                measurementId: "G-3H06QS4RPG"
-            };
+        // Firebase configuration
+        const firebaseConfig = {
 
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const db = getFirestore(app);
+apiKey: "AIzaSyAQXWhEuSn6pXb9dNo72D8_if8ggdX7XL8",
 
-            // Function to save the blog
-            async function saveBlog(title, author, content, imageUrl, category) {
+authDomain: "disenadigitals.firebaseapp.com",
+
+projectId: "disenadigitals",
+
+storageBucket: "disenadigitals.firebasestorage.app",
+
+messagingSenderId: "446106948060",
+
+appId: "1:446106948060:web:94afd8f98bfc40ded8ff19",
+
+measurementId: "G-3H06QS4RPG"
+
+};
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        // Function to upload image to Firebase Storage
+        async function uploadImage(file) {
+            const storageRef = ref(storage, `blog-images/${file.name}`);
+            const snapshot = await uploadBytes(storageRef, file);
+            return await getDownloadURL(snapshot.ref);
+        }
+
+        // Function to save the blog
+        async function saveBlog(title, author, content, imageUrl, category) {
+            try {
+                const docRef = await addDoc(collection(db, "blogs"), {
+                    title,
+                    author,
+                    content: content.replace(/\n/g, '<br/>'),
+                    imageUrl,
+                    category,
+                    createdAt: new Date().toISOString()
+                });
+                alert("Blog saved successfully with ID: " + docRef.id);
+            } catch (error) {
+                alert("Error saving blog: " + error.message);
+            }
+        }
+
+        // Handle form submission
+        const blogForm = document.getElementById("blog-form");
+        blogForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const title = document.getElementById("title").value.trim();
+            const author = document.getElementById("author").value.trim();
+            const content = document.getElementById("content").value.trim();
+            const category = document.getElementById("category").value.trim();
+            const fileInput = document.getElementById("featured-image");
+
+            if (!title || !author || !content || !category) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            let imageUrl = "";
+            if (fileInput.files.length > 0) {
                 try {
-                    const docRef = await addDoc(collection(db, "blogs"), {
-                        title,
-                        author,
-                        content: content.replace(/\n/g, '<br/>'),
-                        imageUrl,
-                        category,
-                        createdAt: new Date().toISOString()
-                    });
-                    alert("Blog saved successfully with ID: " + docRef.id);
+                    imageUrl = await uploadImage(fileInput.files[0]);
                 } catch (error) {
-                    alert("Error saving blog: " + error.message);
+                    alert("Error uploading image: " + error.message);
+                    return;
                 }
             }
 
-            // Handle form submission
-            const blogForm = document.getElementById("blog-form");
-            blogForm.addEventListener("submit", async (event) => {
-                event.preventDefault();
+            await saveBlog(title, author, content, imageUrl, category);
+            blogForm.reset();
+            displayBlogs(); // Refresh blogs after submission
+        });
 
-                // Getting form data
-                const title = document.getElementById("title").value;
-                const author = document.getElementById("author").value;
-                const content = document.getElementById("content").value;
-                const category = document.getElementById("category").value;
+        // Function to display all blogs
+        async function displayBlogs() {
+            const container = document.getElementById("blog-posts-container");
+            container.innerHTML = ""; // Clear previous content
 
-                // Assuming the imageUrl is either a URL string or a file that needs to be uploaded (handle accordingly)
-                const imageUrl = document.getElementById("featured-image").files.length > 0
-                    ? URL.createObjectURL(document.getElementById("featured-image").files[0])
-                    : ""; // You can replace this with actual image upload logic.
-
-                // Save the blog
-                await saveBlog(title, author, content, imageUrl, category);
-                
-                // Reset the form
-                blogForm.reset();
-            });
-
-            // Function to display a blog post
-            async function displayBlogPost() {
+            try {
                 const querySnapshot = await getDocs(collection(db, "blogs"));
                 querySnapshot.forEach((doc) => {
                     const blog = doc.data();
-                    const blogContent = blog.content;
 
-                    document.getElementById("blog-post-display").querySelector("h2").textContent = blog.title;
-                    document.getElementById("blog-content").innerHTML = blogContent;  // Display the content with <br/> tags
+                    const blogDiv = document.createElement("div");
+                    blogDiv.className = "blog-post";
+                    blogDiv.innerHTML = `
+                        <h2>${blog.title}</h2>
+                        <p><strong>Author:</strong> ${blog.author}</p>
+                        <p><strong>Category:</strong> ${blog.category}</p>
+                        <p>${blog.content}</p>
+                        ${blog.imageUrl ? `<img src="${blog.imageUrl}" alt="${blog.title}" style="width: 100%; max-height: 300px; object-fit: cover;">` : ""}
+                    `;
+                    container.appendChild(blogDiv);
                 });
+            } catch (error) {
+                console.error("Error fetching blogs:", error.message);
             }
+        }
 
-            // Display the blog when the page loads
-            displayBlogPost();
-        });
+        // Display blogs on page load
+        displayBlogs();
     </script>
 </body>
 </html>

@@ -18,10 +18,22 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+     <url>
+        <loc>https://www.disenadigitals.co.za/Services</loc>
+        <lastmod>2024-07-30</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
     <url>
         <loc>https://www.disenadigitals.co.za/Blog</loc>
         <lastmod>2024-07-30</lastmod>
-        <changefreq>monthly</changefreq>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.disenadigitals.co.za/FullBlog</loc>
+        <lastmod>2024-07-30</lastmod>
+        <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
