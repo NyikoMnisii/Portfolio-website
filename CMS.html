@@ -131,60 +131,83 @@ measurementId: "G-3H06QS4RPG"
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        // Function to upload image to Firebase Storage
-        async function uploadImage(file) {
-            const storageRef = ref(storage, `blog-images/${file.name}`);
-            const snapshot = await uploadBytes(storageRef, file);
-            return await getDownloadURL(snapshot.ref);
-        }
+       // Function to upload image to Firebase Storage
+async function uploadImage(file) {
+    try {
+        const timestamp = Date.now();
+        const fileExtension = file.name.split('.').pop();
+        const uniqueName = `blog-images/${file.name.split('.')[0]}_${timestamp}.${fileExtension}`;
+        const storageRef = ref(storage, uniqueName);
 
-        // Function to save the blog
-        async function saveBlog(title, author, content, imageUrl, category) {
-            try {
-                const docRef = await addDoc(collection(db, "blogs"), {
-                    title,
-                    author,
-                    content: content.replace(/\n/g, '<br/>'),
-                    imageUrl,
-                    category,
-                    createdAt: new Date().toISOString()
-                });
-                alert("Blog saved successfully with ID: " + docRef.id);
-            } catch (error) {
-                alert("Error saving blog: " + error.message);
-            }
-        }
+        const snapshot = await uploadBytes(storageRef, file);
+        const downloadUrl = await getDownloadURL(snapshot.ref);
+        return downloadUrl;
+    } catch (error) {
+        console.error("Image upload failed: ", error);
+        throw new Error("Image upload failed.");
+    }
+}
 
-        // Handle form submission
-        const blogForm = document.getElementById("blog-form");
-        blogForm.addEventListener("submit", async (event) => {
-            event.preventDefault();
-
-            const title = document.getElementById("title").value.trim();
-            const author = document.getElementById("author").value.trim();
-            const content = document.getElementById("content").value.trim();
-            const category = document.getElementById("category").value.trim();
-            const fileInput = document.getElementById("featured-image");
-
-            if (!title || !author || !content || !category) {
-                alert("Please fill in all required fields.");
-                return;
-            }
-
-            let imageUrl = "";
-            if (fileInput.files.length > 0) {
-                try {
-                    imageUrl = await uploadImage(fileInput.files[0]);
-                } catch (error) {
-                    alert("Error uploading image: " + error.message);
-                    return;
-                }
-            }
-
-            await saveBlog(title, author, content, imageUrl, category);
-            blogForm.reset();
-            displayBlogs(); // Refresh blogs after submission
+// Function to save the blog
+async function saveBlog(title, author, content, imageUrl, category) {
+    try {
+        const docRef = await addDoc(collection(db, "blogs"), {
+            title,
+            author,
+            content: content.replace(/\n/g, '<br/>'), // Convert line breaks to HTML
+            imageUrl,
+            category,
+            createdAt: new Date().toISOString()
         });
+        alert("Blog saved successfully with ID: " + docRef.id);
+    } catch (error) {
+        console.error("Error saving blog:", error);
+        alert("Error saving blog: " + error.message);
+    }
+}
+
+// Handle form submission
+const blogForm = document.getElementById("blog-form");
+blogForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const title = document.getElementById("title").value.trim();
+    const author = document.getElementById("author").value.trim();
+    const content = document.getElementById("content").value.trim();
+    const category = document.getElementById("category").value.trim();
+    const fileInput = document.getElementById("featured-image");
+
+    if (!title || !author || !content || !category) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    let imageUrl = "";
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+
+        // Basic image type validation
+        if (!file.type.startsWith("image/")) {
+            alert("Only image files are allowed.");
+            return;
+        }
+
+        try {
+            imageUrl = await uploadImage(file);
+        } catch (error) {
+            alert("Error uploading image: " + error.message);
+            return;
+        }
+    }
+
+    await saveBlog(title, author, content, imageUrl, category);
+
+    blogForm.reset();
+    if (typeof displayBlogs === "function") {
+        displayBlogs(); // Refresh blogs after submission, if available
+    }
+});
+
 
         // Function to display all blogs
         async function displayBlogs() {

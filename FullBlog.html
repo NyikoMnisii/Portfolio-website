@@ -220,19 +220,32 @@ async function displayBlogPost() {
         if (docSnap.exists()) {
             const blog = docSnap.data();
 
-            // Fetch the image from Firebase Storage
-            if (blog.imagePath) { // Ensure the imagePath exists in the blog data
-                const imageRef = ref(storage, blog.imagePath); // Image path stored in Firestore
-                const imageUrl = await getDownloadURL(imageRef);
-                document.getElementById('blog-image').src = imageUrl;
+            let imageUrl = 'Images/Disena Digitals .png'; // Default image
+
+            // Try to fetch image from Firebase Storage if imagePath is provided
+            if (blog.imagePath && blog.imagePath.trim() !== '') {
+                try {
+                    const imageRef = ref(storage, blog.imagePath);
+                    imageUrl = await getDownloadURL(imageRef);
+                } catch (imageError) {
+                    console.warn("Failed to load image from Firebase Storage. Using placeholder.", imageError);
+                }
             } else {
-                console.warn("Image path not found in the blog data.");
+                console.warn("No imagePath found for this blog post.");
             }
 
-            // Set the blog title and content in the HTML elements
-            document.getElementById("blog-post-display").querySelector("h2").textContent = blog.title;
-            document.getElementById("blog-content").innerHTML = blog.content; // Display the content with <br/> tags
-            document.getElementById("blog-author").innerHTML = blog.author;
+            // Set the image
+            const blogImageElement = document.getElementById('blog-image');
+            if (blogImageElement) blogImageElement.src = imageUrl;
+
+            // Set the blog content
+            const title = blog.title || 'Untitled';
+            const content = blog.content || 'No content available.';
+            const author = blog.author || 'Unknown Author';
+
+            document.getElementById("blog-post-display").querySelector("h2").textContent = title;
+            document.getElementById("blog-content").innerHTML = content;
+            document.getElementById("blog-author").textContent = author;
 
         } else {
             console.log("No such blog found!");
@@ -240,8 +253,10 @@ async function displayBlogPost() {
         }
     } catch (error) {
         console.error("Error fetching blog post: ", error);
+        document.getElementById("blog-post-display").innerHTML = "<p>Error loading blog post.</p>";
     }
 }
+
 
 // Call the function to display the blog post
 displayBlogPost();
