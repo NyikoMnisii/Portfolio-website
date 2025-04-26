@@ -126,8 +126,8 @@
     </header>
     <main>
        
-
         <section id="intro" class="intro-section">
+            <div class="intro-overlay"></div>
             <div class="container text-center">
                 <h1 class="intro-title">Disena Digitals: Leading Website Design Company in South Africa</h1>
                 <p class="intro-text">
@@ -136,6 +136,59 @@
                 <a href="Services.html" class="btn btn-primary">Explore Our Services</a>
             </div>
         </section>
+        
+        <!-- Add this CSS in your styles file or within a <style> tag -->
+        <style>
+            #intro {
+                position: relative;
+                background-image: url('Images/desktop-with-computer.jpg'); /* Update with the actual path to your image */
+                background-size: cover;
+                background-position: center;
+                color: white; /* Make text white to contrast with dark background */
+                padding: 100px 0;
+            }
+        
+            /* Dim overlay */
+            .intro-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.45); /* Dim with 30% opacity */
+                z-index: 1; /* Ensure it's behind text and buttons */
+            }
+        
+            /* Ensure text and button are above the overlay */
+            .container {
+                position: relative;
+                z-index: 2;
+            }
+        
+            .intro-title {
+                font-size: 36px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+        
+            .intro-text {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+        
+            .btn-primary {
+                background-color: white;
+                color: #008066;
+                padding: 10px 20px;
+                text-transform: uppercase;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        
+            .btn-primary:hover {
+                background-color: #63bbaa;
+            }
+        </style>
         
         <section id="Vs" class="py-5 bg-light text-center">
             <div class="container">
@@ -219,7 +272,7 @@
                 <img src="Images/webdev.png" class="teal-overlay" height="55" width="55" alt="Web Development Icon">
                 <h3 class="text-teal mt-2">Web Development</h3>
                 <p>Responsive websites that stand out.</p>
-                <p class="text-muted">Starting from R1,500</p>
+                <p class="text-muted">Starting from R3,000</p>
             </div>
             
             <!-- SEO Service -->
@@ -227,7 +280,7 @@
                 <img src="Images/seoserv.png" class="teal-overlay" height="55" width="55" alt="SEO Icon">
                 <h3 class="text-teal mt-2">SEO</h3>
                 <p>Boost your online visibility and reach.</p>
-                <p class="text-muted">Starting from R3,000</p>
+                <p class="text-muted">Starting from R1,500</p>
             </div>
             
         </div>
