@@ -33,65 +33,113 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="Styles/HomeStyling.css">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.3/dist/purify.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" defer></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        #blog-details {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-        }
+        <style>
+            /* Add the CSS styles you provided here */
+            #blog-details {
+                background-color: #ffffff !important;
+                border-radius: 8px !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+                padding: 15px !important;
+            }
+        
+            #blog-title {
+                font-size: 2.5rem !important;
+                font-weight: bold !important;
+                color: #333 !important;
+            }
+        
+            #blog-image {
+    border-radius: 8px !important;
+    max-height: 500px !important;  /* Adjust the maximum height */
+    object-fit: cover !important;
+    width: 100% !important;  /* Make the image width responsive */
+}
 
-        #blog-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #333;
-        }
+        
+            #blog-content {
+    font-size: 1.1rem !important;
+    color: #2d2d2d !important;
+    line-height: 1.8 !important;  /* Increase line-height for better readability */
+    text-align: justify !important; /* Align the text to both sides */
+    width: 100% !important;
+    background-color: #fff !important;
+    padding: 20px 0; /* Add some top/bottom padding */
+}
+h1, h2, h3 {
+    font-weight: bold;
+    color: #008066; /* Change the color of headings */
+}
 
-        #blog-image {
-            border-radius: 8px;
-            max-height: 400px;
-            object-fit: cover;
-            width: 100%;
-        }
+blockquote {
+    border-left: 5px solid #007bff; /* Style blockquotes with a blue border */
+    padding-left: 20px;
+    font-style: italic;
+    color: #555;
+}
 
-        #blog-content {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.6;
-            text-align: justify;
-            width: 100%;
-        }
+pre {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+}
 
-        .author-info {
-            font-size: 1rem;
-            color: #888;
-            margin-top: 20px;
-        }
+code {
+    background-color: #f4f4f4;
+    padding: 3px 6px;
+    border-radius: 6px;
+}
 
-        .author-info span {
-            font-weight: bold;
-        }
 
-        .back-btn {
-            margin-top: 30px;
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+        
+            .author-info {
+                font-size: 1rem !important;
+                color: #888 !important;
+                margin-top: 20px !important;
+            }
+        
+            .author-info span {
+                font-weight: bold !important;
+            }
+        
+            .back-btn {
+                margin-top: 30px !important;
+                display: inline-block !important;
+                padding: 10px 20px !important;
+                background-color: #008066 !important;
+                color: #fff !important;
+                border-radius: 5px !important;
+                text-decoration: none !important;
+                font-weight: bold !important;
+            }
+        a
+            .back-btn:hover {
+                background-color: #008066 !important;
+                color: seashell !important;
+                text-decoration: none !important;
+            }
+            @media (max-width: 767px) {
+    #blog-details {
+        padding: 10px; /* Reduce padding on smaller screens */
+        max-width: 100% !important; /* Allow it to take full width on small screens */
+    }
 
-        .back-btn:hover {
-            background-color: #0056b3;
-            color: seashell;
-            text-decoration: none;
-        }
-    </style>
+    #blog-content {
+        font-size: 1rem !important; /* Adjust font size for mobile */
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+}
+
+        </style>
+        
+
 </head>
 <body>
     <header>
@@ -207,62 +255,75 @@ const urlParams = new URLSearchParams(window.location.search);
 const blogId = urlParams.get('id');
 
 // Function to display a single blog post
-async function displayBlogPost() {
-    if (!blogId) {
-        console.error("Blog ID not found in the URL.");
-        return;
-    }
+// Configure Marked for GFM
+marked.setOptions({
+            gfm: true,
+            breaks: true,
+            headerIds: true
+        });
 
-    try {
-        const docRef = doc(db, "blogs", blogId);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-            const blog = docSnap.data();
-
-            let imageUrl = 'Images/Disena Digitals .png'; // Default image
-
-            // Try to fetch image from Firebase Storage if imagePath is provided
-            if (blog.imagePath && blog.imagePath.trim() !== '') {
-                try {
-                    const imageRef = ref(storage, blog.imagePath);
-                    imageUrl = await getDownloadURL(imageRef);
-                } catch (imageError) {
-                    console.warn("Failed to load image from Firebase Storage. Using placeholder.", imageError);
-                }
-            } else {
-                console.warn("No imagePath found for this blog post.");
+        async function displayBlogPost() {
+            if (!blogId) {
+                console.error("Blog ID not found in the URL.");
+                document.getElementById("blog-post-display").innerHTML = "<p>Invalid blog URL.</p>";
+                return;
             }
 
-            // Set the image
-            const blogImageElement = document.getElementById('blog-image');
-            if (blogImageElement) blogImageElement.src = imageUrl;
+            try {
+                const docRef = doc(db, "blogs", blogId);
+                const docSnap = await getDoc(docRef);
 
-            // Set the blog content
-            const title = blog.title || 'Untitled';
-            const content = blog.content || 'No content available.';
-            const author = blog.author || 'Unknown Author';
+                if (docSnap.exists()) {
+                    const blog = docSnap.data();
 
-            document.getElementById("blog-post-display").querySelector("h2").textContent = title;
-            document.getElementById("blog-content").innerHTML = content;
-            document.getElementById("blog-author").textContent = author;
+                    let imageUrl = 'Images/Disena Digitals .png'; // Default fallback
 
-        } else {
-            console.log("No such blog found!");
-            document.getElementById("blog-post-display").innerHTML = "<p>Blog not found.</p>";
+                    // Try to load blog image from Firebase Storage
+                    if (blog.imagePath && blog.imagePath.trim() !== '') {
+                        try {
+                            const imageRef = ref(storage, blog.imagePath);
+                            imageUrl = await getDownloadURL(imageRef);
+                        } catch (imageError) {
+                            console.warn("Image load failed, using default.", imageError);
+                        }
+                    }
+
+                    const blogImageElement = document.getElementById('blog-image');
+                    blogImageElement.src = imageUrl;
+
+                    const title = blog.title || 'Untitled';
+                    const content = blog.content || 'No content available.';
+                    const author = blog.author || 'Unknown Author';
+
+                    document.querySelector("#blog-post-display h2").textContent = title;
+                    const rawHTML = marked.parse(content);
+                    const safeHTML = DOMPurify.sanitize(rawHTML);
+
+                    const contentElement = document.getElementById("blog-content");
+                    contentElement.innerHTML = safeHTML;
+
+                    document.getElementById("blog-author").textContent = `Written by ${author}`;
+
+                    // Apply syntax highlighting
+                    document.querySelectorAll('pre code').forEach(block => {
+                        hljs.highlightElement(block);
+                    });
+
+                } else {
+                    document.getElementById("blog-post-display").innerHTML = "<p>Blog not found.</p>";
+                }
+
+            } catch (error) {
+                console.error("Error fetching blog post: ", error);
+                document.getElementById("blog-post-display").innerHTML = "<p>Error loading blog post.</p>";
+            }
         }
-    } catch (error) {
-        console.error("Error fetching blog post: ", error);
-        document.getElementById("blog-post-display").innerHTML = "<p>Error loading blog post.</p>";
-    }
-}
 
-
-// Call the function to display the blog post
-displayBlogPost();
+        displayBlogPost();
 
     </script>
     
+
 
 </body>
 </html>

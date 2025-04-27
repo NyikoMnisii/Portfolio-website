@@ -2,7 +2,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--third-color);
-    color: #ffffff; 
+    color: var(--secondary-color); 
     margin: 0;
     padding: 0;
 }
@@ -21,7 +21,7 @@ body {
 #intro-text, p {
     font-size: 1.2rem; /* Slightly larger than the default to improve visibility */
     line-height: 1.6; /* Adds space between lines for readability */
-    color: var(--third-color); /* A dark grey for contrast while being softer than black */
+    color: var(--secondary-color); /* A dark grey for contrast while being softer than black */
     margin-top: 10px;
     margin-bottom: 20px;
     font-weight: 300; /* Light font-weight for a minimalist look */
@@ -366,6 +366,7 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     filter: brightness(0) invert(1) drop-shadow(0 0 5px #ffd700); /* Adds a gold-ish glow on hover */
     transform: scale(1.1); /* Slightly enlarges the icon on hover */
 }
+
 /* Blog Card Styles */
 .blog-card {
     border: none;
